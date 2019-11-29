@@ -1,0 +1,3 @@
+[submodule "sub/put-ipfs"]
+	path = sub/put-ipfs
+	url = https://github.com/bunsanweb/put-ipfs.git

@@ -30,7 +30,9 @@ export const setPrevPage = (doc, prevUrl) => {
   pageLink.slot = "stardust-page-prev";
   pageLink.textContent = "prev";
   pageLink.href = prevUrl;
-  doc.querySelector("article[slot=stardust-page] footer").append(pageLink);
+  const footer = doc.querySelector(
+    "article[slot=stardust-page] > footer:last-child");
+  footer.append(pageLink);
 };
 
 export const addStardustLink = (doc, url, slotteds = []) => {
@@ -38,10 +40,11 @@ export const addStardustLink = (doc, url, slotteds = []) => {
   link.rel = "stardust";
   link.href = url;
   link.slot = "stardust-page-link";
-  const embeds = slotteds.map(slotted => doc.importNode(slotted, true));
+  const embeds = Array.from(
+    slotteds, slotted => doc.importNode(slotted, true));
 
   // TBD: list item structure
-  const div = doc.createElement("li");
+  const div = doc.createElement("div");
   div.class = "link-to-stardust";
   div.append(link, ...embeds);
   
@@ -49,5 +52,5 @@ export const addStardustLink = (doc, url, slotteds = []) => {
   li.append(div);
   
   const container = doc.querySelector("article[slot=stardust-page] ul");
-  container.append(li);  
+  container.prepend(li);  
 };

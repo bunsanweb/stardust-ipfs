@@ -1,5 +1,5 @@
 import {checkStardust} from "./checker.js";
-import {newStardustPage, setPrevPage, addStardustLink} from "./link.js";
+import {newStardustPage, setPrevPage, addStardustLink} from "./list.js";
 import {put} from "./put-ipfs/put-ipfs.js";
 
 // IPFS based Stardust Publisher
@@ -10,6 +10,7 @@ import {put} from "./put-ipfs/put-ipfs.js";
 // - options.put: put-ipfs.js options (gateway, fetchImpl, trial, ...)
 export const StardustPublisher = class extends EventTarget {
   constructor(pageDoc, slots, node, options = {}) {
+    super();
     this.pageDoc = pageDoc || newStardustPage(options);
     this.slots = slots; 
     this.node = node;
@@ -42,7 +43,7 @@ export const StardustPublisher = class extends EventTarget {
     const url = await urlPromise;
     addStardustLink(this.pageDoc, url, slotteds);
     
-    this.dispatchEvent("published", new Event("published"));
+    this.dispatchEvent(new CustomEvent("published", {detail: {url}}));
     return url;
   }
 
@@ -52,7 +53,7 @@ export const StardustPublisher = class extends EventTarget {
     const doc = newStardustPage(this.options);
     setPrevPage(doc, url);
     this.pageDoc = doc;
-    this.dispatchEvent("archived", new Event("archived"));
+    this.dispatchEvent(new CustomEvent("archived", {detail: {url}}));
     return url;
   }
 

@@ -1,6 +1,6 @@
 import {checkStardust} from "./checker.js";
 import {newStardustPage, setPrevPage, addStardustLink} from "./list.js";
-import {put} from "./put-ipfs/put-ipfs.js";
+import {put} from "./put-ipfs/modules/put-ipfs.js";
 
 // IPFS based Stardust Publisher
 // - pageDoc: HTMLDocument

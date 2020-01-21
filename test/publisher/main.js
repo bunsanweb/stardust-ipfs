@@ -1,5 +1,5 @@
-import * as Publisher from "./modules/publisher.js";
-import * as Template from "./modules/template.js";
+import * as Publisher from "http://localhost:10000/publisher.js";
+import * as Template from "http://localhost:10000/template.js";
 import "https://cdn.jsdelivr.net/npm/ipfs/dist/index.js";
 //console.log(window.Ipfs);
 

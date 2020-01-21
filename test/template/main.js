@@ -1,5 +1,5 @@
-import * as Template from "./modules/template.js";
-import * as Checker from "./modules/checker.js";
+import * as Template from "http://localhost:10000/template.js";
+import * as Checker from "http://localhost:10000/checker.js";
 
 {
   const stardust = Template.newStardust();

@@ -1,6 +1,6 @@
 [submodule "sub/put-ipfs"]
-	path = sub/put-ipfs
+	path = modules/put-ipfs
 	url = https://github.com/bunsanweb/put-ipfs.git
 [submodule "sub/bresource"]
-	path = sub/bresource
+	path = modules/bresource
 	url = https://github.com/bunsanweb/bresource.git

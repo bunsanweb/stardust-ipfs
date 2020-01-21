@@ -1,5 +1,5 @@
-import * as Template from "./modules/template.js";
-import * as List from "./modules/list.js";
+import * as Template from "http://localhost:10000/template.js";
+import * as List from "http://localhost:10000/list.js";
 
 {
   const page = List.newStardustPage();

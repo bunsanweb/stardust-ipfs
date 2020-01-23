@@ -4,15 +4,15 @@ import "https://cdn.jsdelivr.net/npm/ipfs/dist/index.js";
 //console.log(window.Ipfs);
 
 const main = async () => {
-  console.log("[INFO] IPFS node spawn several logs includes WebSocket Errors");
+  console.info("[INFO] IPFS node spawn several logs includes WebSocket Errors");
   const node = new Ipfs({
     repo: `ipfs-${Math.random()}`,
     relay: {enabled: true, hop: {enabled: true, active: true}},
   });
   await node.ready;
   window.ipfsNode = node;
-  //console.log("IPFS version:", (await node.version()).version);
-  //console.log(`Peer ID:`, (await node.id()).id);
+  //console.debug("IPFS version:", (await node.version()).version);
+  //console.debug(`Peer ID:`, (await node.id()).id);
   
   const opts = {
     // uncheck published here, it is a responsibility of put-ipfs.js
@@ -21,15 +21,15 @@ const main = async () => {
   
   const publisher = new Publisher.StardustPublisher(
     null, ["xx-target", "xx-tags"], node);
-  //console.log(publisher.pageHtml);
+  //console.debug(publisher.pageHtml);
   const published = [], archived = [];
   publisher.addEventListener("published",  ev => {
     published.push(ev.detail.url);
-    //console.log("Event Published:", ev.detail.url);
+    //console.debug("Event Published:", ev.detail.url);
   });
   publisher.addEventListener("archived",  ev => {
     archived.push(ev.detail.url);
-    //console.log("Event Archived:", ev.detail.url);
+    //console.debug("Event Archived:", ev.detail.url);
   });
   
   const s1 = newStardust(
@@ -38,8 +38,8 @@ const main = async () => {
     "https://example.com/bar.js", ["javascript", "library"]);
   
   const s1url = await publisher.publish(s1);
-  //console.log("s1", s1url);
-  //console.log("page", publisher.pageHtml);
+  //console.debug("s1", s1url);
+  //console.debug("page", publisher.pageHtml);
   console.assert(published[0] === s1url, "s1url");
   console.assert(
     publisher.pageDoc.querySelector("a[rel=stardust]").href ===
@@ -52,8 +52,8 @@ const main = async () => {
       "javascript cache-control ", "s1 xx-names");
 
   const p1url = await publisher.archivePage();
-  //console.log("p1", p1url);
-  //console.log("page", publisher.pageHtml);
+  //console.debug("p1", p1url);
+  //console.debug("page", publisher.pageHtml);
   console.assert(archived[0] === p1url, "p1url");
   console.assert(
     publisher.pageDoc.querySelectorAll("a[rel=stardust]").length === 0,
@@ -66,8 +66,8 @@ const main = async () => {
       p1url, "prev page link in new page");
 
   const s2url = await publisher.publish(s2);
-  //console.log("s2", s2url);
-  //console.log("page", publisher.pageHtml);
+  //console.debug("s2", s2url);
+  //console.debug("page", publisher.pageHtml);
   console.assert(published[1] === s2url, "s2url");
   console.assert(
     publisher.pageDoc.querySelector("a[rel=stardust]").href ===

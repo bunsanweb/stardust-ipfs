@@ -19,7 +19,7 @@ import * as List from "http://localhost:10000/list.js";
 
   List.setPrevPage(page, "https://example.net/p0/"); 
 
-  //console.log(page.documentElement.outerHTML);
+  //console.debug(page.documentElement.outerHTML);
   console.assert(
     page.querySelector(
       "li:nth-child(2) a[slot=stardust-page-link]").href ===

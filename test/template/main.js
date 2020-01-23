@@ -3,7 +3,7 @@ import * as Checker from "http://localhost:10000/checker.js";
 
 {
   const stardust = Template.newStardust();
-  //console.log(template.documentElement.outerHTML);
+  //console.debug(template.documentElement.outerHTML);
   console.assert(Checker.checkStardust(stardust),
                  "Check template itself is already stardust document");
 

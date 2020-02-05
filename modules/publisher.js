@@ -1,6 +1,7 @@
 import {checkStardust} from "./checker.js";
 import {newStardustPage, setPrevPage, addStardustLink} from "./list.js";
 import {put} from "./put-ipfs/modules/put-ipfs.js";
+import {EventTarget} from "./event-target.js";
 
 // IPFS based Stardust Publisher
 // - pageDoc: HTMLDocument
@@ -8,6 +9,7 @@ import {put} from "./put-ipfs/modules/put-ipfs.js";
 // - node: IPFS node
 // - options.docimpl: DOMImplementation instance
 // - options.put: put-ipfs.js options (gateway, fetchImpl, trial, ...)
+
 export const StardustPublisher = class extends EventTarget {
   constructor(pageDoc, slots, node, options = {}) {
     super();

@@ -14,10 +14,16 @@ const isHTMLDocument = doc =>
 const hasSlotStardust = doc =>
       doc.querySelectorAll(`article[slot=stardust]`).length === 1;
 const allAbsoluteHref = doc =>
-      [...doc.querySelectorAll("[href]")].every(
-        link => link.href === link.getAttribute("href"));
+      [...doc.querySelectorAll("[href]")].every(link => isUri(link, "href"));
 const allAbsoluteSrc = doc =>
-      [...doc.querySelectorAll("[src]")].every(
-        link => link.src === link.getAttribute("src"));
+      [...doc.querySelectorAll("[src]")].every(link => isUri(link, "src"));
 
-                                                
+const isUri = (elem, key) => {
+  try {
+    new URL(elem.getAttribute(key));
+    return true;
+  } catch (error) {
+    // absolute path; e.g. "/", "./foo", "bar", ...
+    return false;
+  }
+};

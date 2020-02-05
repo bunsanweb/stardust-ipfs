@@ -3,13 +3,17 @@ import * as Checker from "http://localhost:10000/checker.js";
 
 {
   const stardust = Template.newStardust();
-  //console.debug(template.documentElement.outerHTML);
+  //console.debug(stardust.documentElement.outerHTML);
   console.assert(Checker.checkStardust(stardust),
                  "Check template itself is already stardust document");
 
   const link = stardust.createElement("a");
   link.href = "./relative.txt";
   stardust.querySelector("article[slot=stardust]").append(link);
+  //console.debug(stardust.documentElement.outerHTML);
+  //console.debug(stardust.URL);
+  //console.debug(stardust.querySelector("[href]").getAttribute("href"));
+  //console.debug(stardust.querySelector("[href]").href);
   console.assert(!Checker.checkStardust(stardust),
                  "relative form url is invalid in href");
   

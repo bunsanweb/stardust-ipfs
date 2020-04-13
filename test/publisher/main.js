@@ -5,7 +5,7 @@ import "https://cdn.jsdelivr.net/npm/ipfs/dist/index.js";
 
 const main = async () => {
   console.info("[INFO] IPFS node spawn several logs includes WebSocket Errors");
-  const node = new Ipfs({
+  const node = await Ipfs.create({
     repo: `ipfs-${Math.random()}`,
     relay: {enabled: true, hop: {enabled: true, active: true}},
   });

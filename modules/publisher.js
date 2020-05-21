@@ -36,7 +36,7 @@ export const StardustPublisher = class extends EventTarget {
       throw Error("document is unsatisfied for Stardust");
     }
     const html = `<!doctype htm>\n${stardustDoc.documentElement.outerHTML}`;
-    const bundle = {"index.html": html};
+    const bundle = {"index.html": new Blob([html])};
     const urlPromise = put(this.node, bundle, this.options.put);
 
     const main = stardustDoc.querySelector("article[slot=stardust]");
@@ -50,7 +50,7 @@ export const StardustPublisher = class extends EventTarget {
   }
 
   async archivePage() {
-    const bundle = {"index.html": this.pageHtml};
+    const bundle = {"index.html": new Blob([this.pageHtml])};
     const url = await put(this.node, bundle, this.options.put);
     const doc = newStardustPage(this.options);
     setPrevPage(doc, url);

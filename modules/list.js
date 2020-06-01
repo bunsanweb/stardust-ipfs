@@ -45,7 +45,7 @@ export const addStardustLink = (doc, url, slotteds = []) => {
 
   // TBD: list item structure
   const div = doc.createElement("div");
-  div.class = "link-to-stardust";
+  div.className = "link-to-stardust";
   div.append(link, ...embeds);
   
   const li = doc.createElement("li");  

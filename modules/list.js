@@ -40,6 +40,7 @@ export const addStardustLink = (doc, url, slotteds = []) => {
   link.rel = "stardust";
   link.href = url;
   link.slot = "stardust-page-link";
+  link.textContent = url;
   const embeds = Array.from(
     slotteds, slotted => doc.importNode(slotted, true));
 
